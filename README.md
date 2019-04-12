@@ -1,4 +1,6 @@
 # Swabbie
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Farmory-io%2Fswabbie.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Farmory-io%2Fswabbie?ref=badge_shield)
+
 
 _**IMPORTANT:** This service is currently under development and is not ready for production._
 
@@ -151,3 +153,7 @@ Resources can be excluded/opted out from consideration using exclusion policies.
 
 #### Allowlisting
 Allowlisting is part of the exclusion mechanism. When defined, only resources allowlisted will be considered, skipping everything else not allowed.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Farmory-io%2Fswabbie.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Farmory-io%2Fswabbie?ref=badge_large)
