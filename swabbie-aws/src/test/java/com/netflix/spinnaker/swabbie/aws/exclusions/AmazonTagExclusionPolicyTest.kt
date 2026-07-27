@@ -29,6 +29,8 @@ import java.time.Instant
 import java.time.LocalDateTime
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 object AmazonTagExclusionPolicyTest {
   private val clock = MutableClock()
@@ -124,6 +126,21 @@ object AmazonTagExclusionPolicyTest {
       filteredResources.size shouldMatch equalTo(1)
       filteredResources.first().resourceId shouldMatch equalTo("2")
     }
+  }
+  //TODO: This is a duplicate of the above but with a VERY specific very precise time zone
+  @Test
+  fun `should handle high precision date times`() {
+    val now = LocalDateTime.ofInstant(Instant.from(DateTimeFormatter.ISO_INSTANT.parse("2024-11-15T23:42:18.592945345Z")), ZoneId.of("America/Chicago"))
+    val resource =  AwsTestResource(
+        id = "1",
+        creationDate = now.toString()
+      ).withDetail(
+        name = "tags",
+        value = listOf(
+          mapOf("expiration_time" to "10d")
+        )
+      )
+    resource.createTs shouldMatch equalTo(now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli())
   }
 }
 
